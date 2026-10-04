@@ -117,7 +117,7 @@ function App() {
       <section id="spacer"></section> */}
 
       <h1>Nutrition Agent</h1>
-      <p>AI-powered meal planner </p>
+      <p>AI-powered Meal Planner </p>
     </main>
   )
 }
