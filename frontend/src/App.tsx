@@ -2,10 +2,15 @@ import './App.css'
 import { useEffect, useState } from 'react'
 
 function App() {
+  
+  const[calories, setCalories] = useState('')
+  const[mealsPerDay, setMealsPerDay] = useState('')
+
   const [mealPlan, setMealPlan] = useState<{
     calories: number
     meals_per_day: number
     message: string
+    calories_per_meal: number
   } | null>(null)
 
   // const [, setMessage] = useState("loading")
@@ -29,15 +34,14 @@ function App() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          calories: 2002,
-          meals_per_day: 3,
+          calories: Number(calories),
+          meals_per_day: Number(mealsPerDay),
         }),
       },
     )
 
     const data = await response.json()
-    console.log(data)
-    // setMessage(data.message)
+    // console.log(data)
     setMealPlan(data)
   }
 
@@ -46,24 +50,32 @@ function App() {
       <h1>Nutrition Agent</h1>
       <p>AI-powered Meal Planner </p>
 
+      <input
+      type="number"
+      placeholder="Calories"
+      value={calories}
+      onChange={(event) => setCalories(event.target.value)}
+      />
+
+      <input
+      type="number"
+      placeholder="Meals per day"
+      value={mealsPerDay}
+      onChange={(event) => setMealsPerDay(event.target.value)}
+      />
+
       <button onClick={createMealPlan}>
         Create Meal Plan
       </button>
 
-      {/* <p>Calories: {data.calories}</p>
-      <p>Meals: {data.meals_per_day}</p>
-      <p>{data.message}</p> */}
-
-      {/* <p>{message}</p> */}
-
       {mealPlan && (
         <>
-          <p>Calories: {mealPlan.calories}</p>
-          <p>Meals: {mealPlan.meals_per_day}</p>
-          <p>{mealPlan.message}</p>
+          {/* <p>Calories: {mealPlan.calories}</p> */}
+          {/* <p>Meals: {mealPlan.meals_per_day}</p> */}
+          {/* <p>{mealPlan.message}</p> */}
+          <p>Calories per Meal: {mealPlan.calories_per_meal}</p>
         </>
       )}
-
 
 
     </main>

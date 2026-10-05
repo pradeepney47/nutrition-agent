@@ -1,6 +1,12 @@
+# HTTP/ API Layer
+
+# Fast API Endpoints
+# Defining HTTP Endpoints 
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from app.services.meal_planner import generate_meal_plan
 
 app = FastAPI()
 
@@ -30,8 +36,9 @@ def root():
 
 @app.post("/api/v1/meal-plans")
 def create_meal_plan(request: MealPlanRequest):
-    return {
-        "calories": request.calories,
-        "meals_per_day": request.meals_per_day,
-        "message": "Meal plan request received",
-    }
+    # request is a Pydantic Model Object
+    # print(request)
+    return generate_meal_plan(
+        calories=request.calories,
+        meals_per_day=request.meals_per_day
+    )
