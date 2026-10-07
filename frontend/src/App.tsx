@@ -26,6 +26,7 @@ function App() {
   }, [])
 
   async function createMealPlan() {
+    console.log('createMealPlan called')
     const response = await fetch(
       'http://localhost:8001/api/v1/meal-plans',
       {
@@ -41,7 +42,8 @@ function App() {
     )
 
     const data = await response.json()
-    // console.log(data)
+    console.log(data)
+    console.log(typeof data)
     setMealPlan(data)
   }
 

@@ -10,3 +10,4 @@ class MealPlan(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
     calories: Mapped[int] = mapped_column(Integer, nullable=False)
     meals_per_day: Mapped[int] = mapped_column(Integer, nullable=False)
+    calories_per_meal: Mapped[int] = mapped_column(Integer, nullable=False)
