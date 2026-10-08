@@ -2,6 +2,7 @@
 
 from app.db.database import SessionLocal
 from app.models.meal_plan import MealPlan
+from app.services.llm import generate_meal_plan
 
 # Service
 # def generate_meal_plan(calories: int, meals_per_day: int) -> dict:
@@ -16,18 +17,31 @@ from app.models.meal_plan import MealPlan
 # database
 # saving values to meal plan table 
 def create_meal_plan(calories: int, meals_per_day: int):
-    # application/ business logic
+# def create_meal_plan():
     calories_per_meal = calories // meals_per_day
 
-    with SessionLocal() as session:
+    meal_plan = generate_meal_plan(
+        calories=calories,
+        meals_per_day=meals_per_day,
+        calories_per_meal=calories_per_meal,
+    )
+    
+    # # application/ business logic
+    # calories_per_meal = calories // meals_per_day
 
-        meal_plan = MealPlan(
-            calories=calories,
-            meals_per_day=meals_per_day,
-            calories_per_meal=calories_per_meal
-            )
 
-        session.add(meal_plan)
-        session.commit()
+    # with SessionLocal() as session:
 
-        return meal_plan
+    #     meal_plan = MealPlan(
+    #         calories=calories,
+    #         meals_per_day=meals_per_day,
+    #         calories_per_meal=calories_per_meal
+    #         )
+
+    #     session.add(meal_plan)
+    #     session.commit()
+
+    #     return meal_plan
+
+    return meal_plan
+

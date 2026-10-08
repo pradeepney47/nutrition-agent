@@ -37,30 +37,38 @@ def root():
 
 @app.post("/api/v1/meal-plans")
 def create_meal_plan_endpoint(request: MealPlanRequest):
-    # request is a Pydantic Model Object
-    # print(request)
+# def create_meal_plan_endpoint():
+    # # request is a Pydantic Model Object
+    # # print(request)
 
-    # return create_meal_plan(
-    #     calories=request.calories,
-    #     meals_per_day=request.meals_per_day
-    # )
+    # # return create_meal_plan(
+    # #     calories=request.calories,
+    # #     meals_per_day=request.meals_per_day
+    # # )
 
     meal_plan = create_meal_plan(
         calories=request.calories,
         meals_per_day=request.meals_per_day
     )
 
-    print(meal_plan)
-    print(meal_plan.id)
-    print(meal_plan.calories)
-    print(meal_plan.meals_per_day)
-    print(meal_plan.calories_per_meal)
+    # print(meal_plan)
+    # print(meal_plan.id)
+    # print(meal_plan.calories)
+    # print(meal_plan.meals_per_day)
+    # print(meal_plan.calories_per_meal)
 
 
 
-    return {
-        "id": meal_plan.id,
-        "calories": meal_plan.calories,
-        "meals_per_day": meal_plan.meals_per_day,
-        "calories_per_meal": meal_plan.calories_per_meal 
-    }
+    # return {
+    #     "id": meal_plan.id,
+    #     "calories": meal_plan.calories,
+    #     "meals_per_day": meal_plan.meals_per_day,
+    #     "calories_per_meal": meal_plan.calories_per_meal 
+    # }
+
+    # meal = create_meal_plan(
+        # calories=request.calories,
+        # meals_per_day=request.meals_per_day,
+    # )
+
+    return meal_plan

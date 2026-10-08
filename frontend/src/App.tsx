@@ -6,12 +6,24 @@ function App() {
   const[calories, setCalories] = useState('')
   const[mealsPerDay, setMealsPerDay] = useState('')
 
-  const [mealPlan, setMealPlan] = useState<{
-    calories: number
+  // const [mealPlan, setMealPlan] = useState<{
+  //   calories: number
+  //   meals_per_day: number
+  //   message: string
+  //   calories_per_meal: number
+  // } | null>(null)
+
+    const [mealPlan, setMealPlan] = useState<{
+    total_calories: number
     meals_per_day: number
-    message: string
-    calories_per_meal: number
+    meals:{
+      name: number
+      calories: number
+      ingredients: string[]
+    }[]
   } | null>(null)
+
+
 
   // const [, setMessage] = useState("loading")
 
@@ -69,16 +81,26 @@ function App() {
       <button onClick={createMealPlan}>
         Create Meal Plan
       </button>
-
+      
       {mealPlan && (
-        <>
-          {/* <p>Calories: {mealPlan.calories}</p> */}
-          {/* <p>Meals: {mealPlan.meals_per_day}</p> */}
-          {/* <p>{mealPlan.message}</p> */}
-          <p>Calories per Meal: {mealPlan.calories_per_meal}</p>
-        </>
-      )}
+    <>
+      <p>Total Calories: {mealPlan.total_calories}</p>
+      <p>Meals per Day: {mealPlan.meals_per_day}</p>
 
+      {mealPlan.meals.map((meal) => (
+        <div key={meal.name}>
+          <h2>{meal.name}</h2>
+          <p>Calories: {meal.calories}</p>
+
+          <ul>
+            {meal.ingredients.map((ingredient) => (
+              <li key={ingredient}>{ingredient}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </>
+  )}
 
     </main>
   )
