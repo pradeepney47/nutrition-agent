@@ -1,23 +1,14 @@
 # Application/ Business Logic
+# Service
 
 from app.db.database import SessionLocal
 from app.models.meal_plan import MealPlan
 from app.services.llm import generate_meal_plan
 
-# Service
-# def generate_meal_plan(calories: int, meals_per_day: int) -> dict:
-#     calories_per_meal = calories // meals_per_day
-#     return {
-#         "calories": calories,
-#         "meals_per_day": meals_per_day,
-#         "calories_per_meal": calories_per_meal,
-#         "message": "Meal plan request received"
-#     }
 
-# database
-# saving values to meal plan table 
 def create_meal_plan(calories: int, meals_per_day: int):
-# def create_meal_plan():
+    
+    # application/ business logic
     calories_per_meal = calories // meals_per_day
 
     meal_plan = generate_meal_plan(
@@ -26,9 +17,9 @@ def create_meal_plan(calories: int, meals_per_day: int):
         calories_per_meal=calories_per_meal,
     )
     
-    # # application/ business logic
-    # calories_per_meal = calories // meals_per_day
 
+    # PSQL database operation
+    # saving values to meal plan table 
 
     # with SessionLocal() as session:
 
@@ -44,4 +35,3 @@ def create_meal_plan(calories: int, meals_per_day: int):
     #     return meal_plan
 
     return meal_plan
-
