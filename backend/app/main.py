@@ -11,10 +11,6 @@ from app.services.meal_planner import create_meal_plan
 
 app = FastAPI()
 
-class MealPlanRequest(BaseModel):
-    calories: int
-    meals_per_day: int
-
 # Cross-Origin Resource Sharing (CORS) is a security system 
 # built into web browsers that allows a server to permit or block 
 # web pages from requesting resources from a different domain, protocol, or port
@@ -27,6 +23,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+class MealPlanRequest(BaseModel):
+    calories: int
+    meals_per_day: int
+
 
 # http://localhost:8000/
 # HTTP endpoint GET /
@@ -71,4 +73,18 @@ def create_meal_plan_endpoint(request: MealPlanRequest):
         # meals_per_day=request.meals_per_day,
     # )
 
+    # print(meal_plan)
+
     return meal_plan
+
+
+# {'id': 3, 'total_calories': 234, 'meals_per_day': 3, 
+
+# 'meals': [{'id': 6, 'name': 'Greek Yogurt Snack', 'calories': 78, 
+# 'ingredients': [{'id': 12, 'name': 'Plain non-fat Greek yogurt'}, {'id': 13, 'name': 'Blueberries'}]},
+#  
+# {'id': 7, 'name': 'Apple Slices with Cinnamon', 'calories': 78, 
+# 'ingredients': [{'id': 14, 'name': 'Apple'}, {'id': 15, 'name': 'Cinnamon'}]}, 
+# 
+# {'id': 8, 'name': 'Cucumber and Hummus Bites', 'calories': 78, 
+# 'ingredients': [{'id': 16, 'name': 'Cucumber'}, {'id': 17, 'name': 'Hummus'}]}]}

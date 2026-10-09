@@ -6,12 +6,18 @@ function App() {
   const [loading, setLoading] = useState(false)
 
   const [mealPlan, setMealPlan] = useState<{
+    id: number
     total_calories: number
     meals_per_day: number
     meals: {
+      id: number
       name: string
       calories: number
-      ingredients: string[]
+      // ingredients: string[]
+      ingredients: {
+        id: number
+        name: string
+      }[]
     }[]
   } | null>(null)
 
@@ -200,7 +206,8 @@ function App() {
 
               {mealPlan.meals.map((meal, index) => (
                 <article
-                  key={`${meal.name}-${index}`}
+                  // key={`${meal.name}-${index}`}
+                  key={meal.id}
                   className="group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-200 transition duration-200 hover:-translate-y-1 hover:shadow-lg"
                 >
 
@@ -262,13 +269,13 @@ function App() {
 
                         {meal.ingredients.map((ingredient) => (
                           <li
-                            key={ingredient}
+                            key={ingredient.id}
                             className="flex items-start gap-3 text-sm leading-relaxed text-slate-700"
                           >
                             <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-500" />
 
                             <span>
-                              {ingredient}
+                              {ingredient.name}
                             </span>
                           </li>
                         ))}
